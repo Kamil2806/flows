@@ -18,7 +18,7 @@ public class UserController {
         this.securityService = securityService;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/login")
     public String GetUser() {
         String user = "user";
         return user;

@@ -34,14 +34,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
             .csrf()
-                .ignoringAntMatchers("/h2-console/**")
+                .ignoringAntMatchers("/h2-console/**", "/login")
                 .and()
             .headers()
                 .frameOptions()
                 .sameOrigin()
                 .and()
             .formLogin()
-                .loginPage("/login")
+                .loginProcessingUrl("/login")
                 .permitAll()
                 .and()
             .logout()
@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser("KamilS")
-                .password("Password")
+                .password(bCryptPasswordEncoder().encode("Password"))
                 .roles("USER");
     }
 
